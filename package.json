@@ -1,5 +1,5 @@
 {
-  "name": "react-native-sound-player",
+  "name": "@mythologi/react-native-sound-player",
   "version": "0.11.3",
   "description": "Play or stream audio files in ReactNative on iOS/Android",
   "main": "index.js",
