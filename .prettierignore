@@ -1,0 +1,5 @@
+.github/*
+ios/*
+android/*
+node_modules/*
+package.json

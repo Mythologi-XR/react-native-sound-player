@@ -27,8 +27,8 @@ For RN >= 0.60 you can skip this step.
 
 1. Add sound files to iOS/Android.
 
--   On iOS, drag and drop sound file into project in Xcode. Remember to check **"Copy items if needed"** option and **"Add to targets"**.
--   On Android, put sound files in `{project_root}/android/app/src/main/res/raw/`. Just create the folder if it doesn't exist.
+- On iOS, drag and drop sound file into project in Xcode. Remember to check **"Copy items if needed"** option and **"Add to targets"**.
+- On Android, put sound files in `{project_root}/android/app/src/main/res/raw/`. Just create the folder if it doesn't exist.
 
 2. Import the library and call the `playSoundFile(fileName, fileType)` function:
 
@@ -36,19 +36,19 @@ For RN >= 0.60 you can skip this step.
 import SoundPlayer from 'react-native-sound-player'
 
 try {
-    // play the file tone.mp3
-    SoundPlayer.playSoundFile('tone', 'mp3')
-    // or play from url
-    SoundPlayer.playUrl('https://example.com/music.mp3')
+  // play the file tone.mp3
+  SoundPlayer.playSoundFile('tone', 'mp3')
+  // or play from url
+  SoundPlayer.playUrl('https://example.com/music.mp3')
 } catch (e) {
-    console.log(`cannot play the sound file`, e)
+  console.log(`cannot play the sound file`, e)
 }
 ```
 
 > Please note that the device can still go to sleep (screen goes off) while audio is playing.
 > When this happens, the audio will stop playing.
 > To prevent this, you can use something like [react-native-keep-awake](https://github.com/corbt/react-native-keep-awake).
-> Or alternatively, for iOS, you can add a Background Mode of `Audio, AirPlay, and Picture in Picture` in XCode. To do this, select your application from Targets, then click on `Signing & Capabilities` and add `Background Modes`. once the options for it appear on your `Signing & Capabilities` page select the checkbox with `Audio, AirPlay, and Picture in Picture`. This will allow the application to continue playing audio when the app is in the background and even when the device is locked. 
+> Or alternatively, for iOS, you can add a Background Mode of `Audio, AirPlay, and Picture in Picture` in XCode. To do this, select your application from Targets, then click on `Signing & Capabilities` and add `Background Modes`. once the options for it appear on your `Signing & Capabilities` page select the checkbox with `Audio, AirPlay, and Picture in Picture`. This will allow the application to continue playing audio when the app is in the background and even when the device is locked.
 
 ## Functions
 
@@ -56,10 +56,9 @@ try {
 
 Play the sound file named `fileName` with file type `fileType`.
 
-
 ### `playSoundFileWithDelay(fileName: string, fileType: string, delay: number)` - iOS Only
 
-Play the sound file named `fileName` with file type `fileType` after a a delay of `delay` in *seconds* from the current device time.
+Play the sound file named `fileName` with file type `fileType` after a a delay of `delay` in _seconds_ from the current device time.
 
 ### `loadSoundFile(fileName: string, fileType: string)`
 
@@ -74,8 +73,8 @@ file is loaded.
 
 Play the audio from url. Supported formats are:
 
--   [AVPlayer (iOS)](https://stackoverflow.com/questions/21879981/avfoundation-avplayer-supported-formats-no-vob-or-mpg-containers)
--   [MediaPlayer (Android)](https://developer.android.com/guide/topics/media/media-formats)
+- [AVPlayer (iOS)](https://stackoverflow.com/questions/21879981/avfoundation-avplayer-supported-formats-no-vob-or-mpg-containers)
+- [MediaPlayer (Android)](https://developer.android.com/guide/topics/media/media-formats)
 
 ### `loadUrl(url: string)`
 
@@ -172,7 +171,6 @@ Only available on iOS. If you set this option, your audio will be mixed with aud
 ### `setVolume(volume: number)`
 
 Set the volume of the current player. This does not change the volume of the device.
-
 
 ### `setNumberOfLoops(volume: number)` - iOS Only
 

@@ -1,111 +1,95 @@
-/**
- * @flow
- */
-"use strict";
+'use strict'
 
-import { NativeModules, NativeEventEmitter, Platform } from "react-native";
-const { RNSoundPlayer } = NativeModules;
+import { NativeModules, NativeEventEmitter, Platform } from 'react-native'
+const { RNSoundPlayer } = NativeModules
 
-const _soundPlayerEmitter = new NativeEventEmitter(RNSoundPlayer);
-let _finishedPlayingListener = null;
-let _finishedLoadingListener = null;
+const _soundPlayerEmitter = new NativeEventEmitter(RNSoundPlayer)
+let _finishedPlayingListener = null
+let _finishedLoadingListener = null
 
 export default {
-  playSoundFile: (name: string, type: string) => {
-    RNSoundPlayer.playSoundFile(name, type);
+  playSoundFile: (name, type) => {
+    RNSoundPlayer.playSoundFile(name, type)
   },
 
-  playSoundFileWithDelay: (name: string, type: string, delay: number) => {
-    RNSoundPlayer.playSoundFileWithDelay(name, type, delay);
+  playSoundFileWithDelay: (name, type, delay) => {
+    RNSoundPlayer.playSoundFileWithDelay(name, type, delay)
   },
 
-  loadSoundFile: (name: string, type: string) => {
-    RNSoundPlayer.loadSoundFile(name, type);
+  loadSoundFile: (name, type) => {
+    RNSoundPlayer.loadSoundFile(name, type)
   },
 
-  setNumberOfLoops: (loops: number) => {
-    RNSoundPlayer.setNumberOfLoops(loops);
+  setNumberOfLoops: loops => {
+    RNSoundPlayer.setNumberOfLoops(loops)
   },
 
-  playUrl: (url: string) => {
-    RNSoundPlayer.playUrl(url);
+  playUrl: url => {
+    RNSoundPlayer.playUrl(url)
   },
 
-  loadUrl: (url: string) => {
-    RNSoundPlayer.loadUrl(url);
+  loadUrl: url => {
+    RNSoundPlayer.loadUrl(url)
   },
 
-  onFinishedPlaying: (callback: (success: boolean) => any) => {
+  onFinishedPlaying: callback => {
     if (_finishedPlayingListener) {
-      _finishedPlayingListener.remove();
-      _finishedPlayingListener = undefined;
+      _finishedPlayingListener.remove()
+      _finishedPlayingListener = undefined
     }
 
-    _finishedPlayingListener = _soundPlayerEmitter.addListener(
-      "FinishedPlaying",
-      callback
-    );
+    _finishedPlayingListener = _soundPlayerEmitter.addListener('FinishedPlaying', callback)
   },
 
-  onFinishedLoading: (callback: (success: boolean) => any) => {
+  onFinishedLoading: callback => {
     if (_finishedLoadingListener) {
-      _finishedLoadingListener.remove();
-      _finishedLoadingListener = undefined;
+      _finishedLoadingListener.remove()
+      _finishedLoadingListener = undefined
     }
 
-    _finishedLoadingListener = _soundPlayerEmitter.addListener(
-      "FinishedLoading",
-      callback
-    );
+    _finishedLoadingListener = _soundPlayerEmitter.addListener('FinishedLoading', callback)
   },
 
-  addEventListener: (
-    eventName:
-      | "FinishedLoading"
-      | "FinishedPlaying"
-      | "FinishedLoadingURL"
-      | "FinishedLoadingFile",
-    callback: Function
-  ) => _soundPlayerEmitter.addListener(eventName, callback),
+  addEventListener: (eventName, callback) => _soundPlayerEmitter.addListener(eventName, callback),
 
   play: () => {
     // play and resume has the exact same implementation natively
-    RNSoundPlayer.resume();
+    RNSoundPlayer.resume()
   },
 
   pause: () => {
-    RNSoundPlayer.pause();
+    RNSoundPlayer.pause()
   },
 
   resume: () => {
-    RNSoundPlayer.resume();
+    RNSoundPlayer.resume()
   },
 
   stop: () => {
-    RNSoundPlayer.stop();
+    RNSoundPlayer.stop()
   },
 
-  seek: (seconds: number) => {
-    RNSoundPlayer.seek(seconds);
+  seek: seconds => {
+    RNSoundPlayer.seek(seconds)
   },
 
-  setVolume: (volume: number) => {
-    RNSoundPlayer.setVolume(volume);
+  setVolume: volume => {
+    RNSoundPlayer.setVolume(volume)
   },
 
-  setSpeaker: (on: boolean) => {
-    if (Platform.OS === "android" || Platform.isTVOS) {
-      console.log("setSpeaker is not implemented on Android or tvOS");
+  setSpeaker: on => {
+    if (Platform.OS === 'android' || Platform.isTVOS) {
+      console.log('setSpeaker is not implemented on Android or tvOS')
     } else {
-      RNSoundPlayer.setSpeaker(on);
+      RNSoundPlayer.setSpeaker(on)
     }
   },
 
-  setMixAudio: (on: boolean) => {
-    if (Platform.OS === "android") {
-      console.log("setMixAudio is not implemented on Android");
+  setMixAudio: on => {
+    if (Platform.OS === 'android') {
+      console.log('setMixAudio is not implemented on Android')
     } else {
-      RNSoundPlayer.setMixAudio(on);
+      RNSoundPlayer.setMixAudio(on)
     }
   },
 
@@ -113,13 +97,13 @@ export default {
 
   unmount: () => {
     if (_finishedPlayingListener) {
-      _finishedPlayingListener.remove();
-      _finishedPlayingListener = undefined;
+      _finishedPlayingListener.remove()
+      _finishedPlayingListener = undefined
     }
 
     if (_finishedLoadingListener) {
-      _finishedLoadingListener.remove();
-      _finishedLoadingListener = undefined;
+      _finishedLoadingListener.remove()
+      _finishedLoadingListener = undefined
     }
   },
-};
+}
